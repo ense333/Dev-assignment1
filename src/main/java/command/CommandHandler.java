@@ -26,6 +26,7 @@ public class CommandHandler {
             }else if(command.equals("조회")){
                 Post post = postController.readPost();
                 if(post != null){
+                    System.out.println("번호: " + post.getPostId());
                     System.out.println("제목: " + post.getTitle());
                     System.out.println("내용: " + post.getContent());
                 }
