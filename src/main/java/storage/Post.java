@@ -4,13 +4,12 @@ public class Post {
 
     private String title;
     private String content;
-    private long postId;
-    private static long incrementId = 1;
+    private final long postId;
 
-    public Post(String title, String content) {
+    public Post(String title, String content, long postId) {
         this.title = title;
         this.content = content;
-        this.postId = incrementId++;
+        this.postId = postId;
     }
 
     public String getTitle() {
