@@ -18,7 +18,7 @@ public class Board {
         this.boardId = boardId;
     }
 
-    public void addBoard(Post post){
+    public void addPost(Post post){
         posts.put(post.getPostId(), post);
     }
 
