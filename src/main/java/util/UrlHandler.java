@@ -13,17 +13,25 @@ public class UrlHandler {
 
     public UrlHandler(String url) {
         String[] split = url.split("/");   //혹시 잘
-        if(split[0] == null || split[1] == null){
+        if(split[1] == null || split[2] == null){
             throw new IllegalArgumentException("Invalid URL");
         }else{
-            // /sfsdfsdf/dsffsdffs?name=wqewqeqw
             String[] split1 = split[2].split("\\?");
             division = split[1];
             action = split1[0];
-            parameter = split1[1];
+            if(split1.length == 2){
+                parameter = split1[1];
+            }else{
+                parameter = "";
+            }
         }
         if(checkHasParameter()){
-            parseParameters(parameter);
+            try {
+                parseParameters(parameter);
+            } catch (IllegalArgumentException e) {
+                throw e;
+            }
+
         }
     }
 
@@ -36,13 +44,19 @@ public class UrlHandler {
         String[] split = parameters.split("&");
         if(split.length > 1) {
             for (String s : split) {
-                String[] valueSet = s.split("=");
-                if (valueSet.length == 2) {
-                    parameterMap.put(valueSet[0], valueSet[1]);
-                }else{
-                    parameterMap.put(valueSet[0], "");
-                }
+                putParameter(s);
             }
+        }else {
+            putParameter(parameters);
+        }
+    }
+
+    private void putParameter(String s) {
+        String[] valueSet = s.split("=");
+        if (valueSet.length == 2) {
+            parameterMap.put(valueSet[0], valueSet[1]);
+        }else{
+            throw new IllegalArgumentException("Invalid parameter");
         }
     }
 
