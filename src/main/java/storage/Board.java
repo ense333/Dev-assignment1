@@ -26,4 +26,18 @@ public class Board {
         this.boardName = boardName;
         this.boardDescription = boardDescription;
     }
+
+    public String getBoardName() {
+        return boardName;
+    }
+
+    public void viewPosts(){
+        if(!posts.isEmpty()){
+            System.out.println("글 번호/글 제목/작성일");
+            for (Post post : posts.values()) {
+                System.out.print(post.getPostId() + "/" + post.getTitle() + "/" + post.getCreatedAt());
+            }
+            System.out.println();
+        }
+    }
 }
