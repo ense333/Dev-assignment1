@@ -44,7 +44,13 @@ public class BoardController {
     }
 
     public void viewBoard(String boardName) {
-
+        for (Board board : boards.values()) {
+            if(board.getBoardName().equals(boardName)) {
+                board.viewPosts();
+                return;
+            }
+        }
+        throw new NoSuchElementException("Board not found");
     }
 
 }

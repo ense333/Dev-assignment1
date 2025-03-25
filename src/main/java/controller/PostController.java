@@ -9,8 +9,8 @@ public class PostController {
     private Map<Long, Post> posts = new HashMap<>();
     private static Long checkId = 1L;
 
-    public void createPost(String title, String content){
-        Post newPost = new Post(title, content, checkId);
+    public void createPost(String title, String content, long boardId){
+        Post newPost = new Post(title, content, checkId, boardId);
         posts.put(checkId++, newPost);
         System.out.println("게시글이 추가되었습니다.");
     }
